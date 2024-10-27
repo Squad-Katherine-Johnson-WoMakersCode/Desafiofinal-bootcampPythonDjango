@@ -15,12 +15,12 @@
         <a class="btn btn-outline-dark m-2 me-4" href="{% url 'login' %}">Login</a>
       </li>
     {% else %}
-      {% if request.path != '/plataforma/home/'%}    
+      {% if request.path != '/plataforma/area_do_autor/'%}    
         <li class="nav-item">
-          <a href="{% url 'home' %}" class="btn btn-outline-dark m-2">Área do autor</a>
+          <a href="{% url 'area_do_autor' %}" class="btn btn-outline-dark m-2">Área do autor</a>
         </li>
       {% endif %}
-      {% if request.path != '/plataforma/home/criar_artigo/' %}  
+      {% if request.path != '/plataforma/area_do_autor/criar_artigo/' %}  
         <li class="nav-item">
           <a href="{% url 'criar_artigo' %}" class="btn btn-outline-info m-2">Escrever artigo</a>
         </li>

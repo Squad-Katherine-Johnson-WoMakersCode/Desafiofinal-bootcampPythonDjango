@@ -6,9 +6,9 @@ from django.contrib.messages import constants
 from django.db.models import Q
 
 @login_required(login_url = '/auth/login')
-def home(request):
+def area_do_autor(request):
     noticias = Noticia.objects.filter(autor=request.user)
-    return render(request, 'home.html', {'noticias': noticias})
+    return render(request, 'area_do_autor.html', {'noticias': noticias})
 
 def criar_artigo(request):
     return render (request, 'criar_artigo.html')
@@ -26,7 +26,7 @@ def criar_artigo(request):
             titulo=titulo, subtitulo=subtitulo, conteudo=conteudo, imagem=imagem, categoria=categoria, autor=request.user
         )
         
-        return redirect('home')
+        return redirect('area_do_autor')
     
     categorias = Categoria.objects.all()
     return render(request, 'criar_artigo.html', {'categorias': categorias})
@@ -36,10 +36,10 @@ def excluir_noticia(request, id):
         noticia = get_object_or_404(Noticia, id=id)
         noticia.delete()
         messages.add_message(request, constants.SUCCESS, "Notícia excluída com sucesso.")
-        return redirect('home')
+        return redirect('area_do_autor')
     else:
         messages.add_message(request, constants.ERROR, "Você não tem permissão para excluir uma notícia.")
-        return redirect('home')
+        return redirect('area_do_autor')
 
 def buscar_noticias(request):
     query = request.GET.get('q')  # Palavra-chave

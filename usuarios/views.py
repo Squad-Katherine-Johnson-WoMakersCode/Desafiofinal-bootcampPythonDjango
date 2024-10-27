@@ -7,12 +7,12 @@ from time import sleep
 # Create your views here.
 def login(request):
     if request.user.is_authenticated:
-        return redirect('/plataforma/home')
+        return redirect('/plataforma/area_do_autor')
     return render(request, 'login.html')
 
 def cadastro(request):
     if request.user.is_authenticated:
-        return redirect('/plataforma/home')
+        return redirect('/plataforma/area_do_autor')
     return render(request, 'cadastro.html')
 
 def valida_cadastro(request):
@@ -61,7 +61,7 @@ def valida_login(request):
     else:
         auth.login(request, usuario)
         request.session['logado'] = True
-        return redirect('/plataforma/home')
+        return redirect('/plataforma/area_do_autor')
     
 def logout(request):
     auth.logout(request)
