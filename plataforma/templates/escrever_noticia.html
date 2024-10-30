@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block conteudo %}
-<div class="container my-5">
+<div class="container my-5" style= "max-width: 1100px;">
   {% if messages %}
     {% for message in messages %}
       <div class="alert {{ message.tags }}" role="alert">{{ message }}</div>
@@ -44,10 +44,16 @@
     
     <input type="hidden" id="conteudo_hidden" name="conteudo">
     
-    <div class="form-group conteudo_container my-2">
+    <div class="form-group conteudo_container my-2" style="text-align: justify; width: 100%;">
       <label for="conteudo" class = "my-2">Conteúdo</label>
      
       <div id="toolbar">
+        <select class="ql-header" title="Cabeçalhos">
+          <option value="1">H1</option>
+          <option value="2">H2</option>
+          <option value="3">H3</option>
+          <option selected></option> 
+      </select>
         <button class="ql-bold" title="Negrito" type="button"></button>
         <button class="ql-italic" title="Itálico"  type="button"></button>
         <button class="ql-underline" title="Sublinhado" type="button"></button>
@@ -63,7 +69,7 @@
       <div id="conteudo" style="height: 700px;"></div>
     </div>
 
-    <button type="button" class="btn btn-primary my-2" onclick="enviarFormulario()">Publicar</button>
+    <button type="button" class="btn btn-outline-primary my-2 w-100" onclick="enviarFormulario()">Publicar</button>
   </form>
 </div>
 
@@ -95,26 +101,20 @@
         }
     });
 
-  toolbar.addHandler('image', () => {
-      const input = document.createElement('input');
-      input.setAttribute('type', 'file');
-      input.setAttribute('accept', 'image/*');
-      input.click();
-
-      input.onchange = () => {
-          const file = input.files[0];
-          const reader = new FileReader();
-          
-          reader.onloadend = () => {
-              const range = quill.getSelection();
-              quill.insertEmbed(range.index, 'image', reader.result);
-          };
-
-          if (file) {
-              reader.readAsDataURL(file); 
-          }
-      };
-  });
+    toolbar.addHandler('image', () => {
+      const url = prompt('Por favor, insira a URL da imagem:');
+      
+      if (url) {
+          const range = quill.getSelection();
+          quill.insertEmbed(range.index, 'image', url);
+  
+          // Seleciona todas as imagens e aplica a classe responsive-image
+          const imgs = quill.root.querySelectorAll('img'); 
+          imgs.forEach((img) => {
+              img.classList.add('responsive-image'); 
+          });
+      }
+  });;
   function enviarFormulario() {
 
     document.getElementById('conteudo_hidden').value = quill.root.innerHTML;

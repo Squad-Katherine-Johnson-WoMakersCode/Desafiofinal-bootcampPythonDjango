@@ -2,7 +2,7 @@
 {% block titulo %} {{ noticia.titulo }} {% endblock %} 
 {% block conteudo %}
 
-<div class="container mt-5">
+<div class="container mt-5 mx-auto"  style="text-align: justify; max-width: 900px;">
     {% if messages %}
         {% for message in messages %}
             <div class="alert {{message.tags}}" role="alert">
@@ -12,13 +12,13 @@
     {% endif %}
     <h1>{{ noticia.titulo }}</h1>
     <div class="d-flex">
-        <div class="flex-shrink-0">
+        <div class="flex-shrink-0 w-100">
             {% if noticia.capa %}
             <img
             src="{{ noticia.capa.url }}"
             alt="{{ noticia.titulo }}"      
-            class="img-fluid img-small"
-            style="height: 400px; object-fit: cover"
+            class="img-fluid img-small w-100"
+            style="height: 300px; object-fit: cover"
             />
             {% endif %}
         </div>
