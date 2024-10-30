@@ -1,0 +1,33 @@
+
+{% load static %}
+<h3> Comentários 💬 </h3>
+{% if noticia.comentarios.all %}
+    <div class="list-group">
+        {% for comentario in noticia.comentarios.all %}
+            <div class="list-group-item">
+                <p class="small mb-1 text-muted">{{ comentario.comentario }}</p>
+                <small class="small text-muted">{{ comentario.autor }} em {{ comentario.data_comentario }}</small>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>Não há comentários para esta notícia ainda.</p>
+{% endif %}
+<h3 class= "my-2">Adicionar um comentário</h3>
+{% if error_message %}
+    <div class="alert alert-danger" role="alert">
+        {{ error_message }}
+    </div>
+{% endif %}
+<form action="{% url 'adicionar_comentario' noticia.id %}" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="autor" class="form-label">Seu nome</label>
+        <input type="text" class="form-control" id="autor" name="autor" placeholder="Seu nome" required>
+    </div>
+    <div class="mb-3">
+        <label for="comentario" class="form-label">Seu comentário</label>
+        <textarea class="form-control" id="comentario" name="comentario" placeholder="Seu comentário" rows="3" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Enviar</button>
+</form>

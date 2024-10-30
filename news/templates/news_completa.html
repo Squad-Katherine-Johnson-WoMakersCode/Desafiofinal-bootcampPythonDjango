@@ -10,7 +10,9 @@
             </div>
         {% endfor %}
     {% endif %}
+
     <h1>{{ noticia.titulo }}</h1>
+
     <div class="d-flex">
         <div class="flex-shrink-0 w-100">
             {% if noticia.capa %}
@@ -27,6 +29,11 @@
     <h2 class="h4">{{ noticia.subtitulo }}</h2>
     <hr>
     <div class = "flex-grow-1" >{{noticia.conteudo |safe }}</div>
-  </div>
+    <p class="card-text mt-3">
+        <small class="">{{ noticia.autor.username }} em {{ noticia.data_publicacao }} </small>
+    </p>
+    <hr>    
+    {% include "adicionar_comentario.html" %}
+</div>
 </div>
 {% endblock %}

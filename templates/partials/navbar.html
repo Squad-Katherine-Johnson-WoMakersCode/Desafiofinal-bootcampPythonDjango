@@ -9,23 +9,23 @@
     <ul class="navbar-nav">
       {% if not user.is_authenticated %}
         <li class="nav-item m-2">
-          <a class="btn btn-outline-dark" href="{% url 'login' %}">Login</a>
+          <a class="btn btn-outline-dark font_open_sans" href="{% url 'login' %}">Login</a>
         </li>
         <li class="nav-item m-2">
-          <a class="btn btn-outline-dark" href="{% url 'cadastro' %}">Cadastro</a>
+          <a class="btn btn-outline-dark font_open_sans" href="{% url 'cadastro' %}">Cadastro</a>
         </li>
         <li class="nav-item m-2">
-          <a class="btn btn-outline-dark" href="/admin">Sou Editor</a>
+          <a class="btn btn-outline-dark font_open_sans" href="/admin">Sou Editor</a>
         </li>
       {% else %}
         <li class="nav-item m-2">
-          <a class="btn btn-outline-dark" href="{% url 'home' %}">Área do autor</a>
+          <a class="btn btn-outline-dark font_open_sans" href="{% url 'home' %}">Área do autor</a>
         </li>
         <li class="nav-item m-2">
-          <a class="btn btn-outline-info" href="{% url 'escrever_noticia' %}">Escrever notícia</a>
+          <a class="btn btn-outline-info font_open_sans" href="{% url 'escrever_noticia' %}">Escrever notícia</a>
         </li>
         <li class="nav-item m-2">
-          <a class="btn btn-outline-danger" href="{% url 'logout' %}">Sair</a>
+          <a class="btn btn-outline-danger font_open_sans" href="{% url 'logout' %}">Sair</a>
         </li>
       {% endif %}
     </ul>

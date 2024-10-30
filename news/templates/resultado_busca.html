@@ -27,30 +27,27 @@
   {% if noticias %}
     <div class="row">
       {% for noticia in noticias %}
-        <div class="col-md-6 mb-4">
-          <div class="card h-100">
-            {% if noticia.capa %}
-              <img 
-                src="{{ noticia.capa.url }}" 
-                class="card-img-top" 
-                alt="{{ noticia.titulo }}" 
-                style="height: 200px; object-fit: cover;">
-            {% endif %}
-            <div class="card-body">
-              <h5 class="card-title">{{ noticia.titulo }}</h5>
-              <p class="card-text text-muted">{{ noticia.subtitulo }}</p>
-              <p class="card-text">
-                <small>Autor: {{ noticia.autor.username }} | 
-                Categoria: {{ noticia.categoria.nome }}</small>
-              </p>
-              <p class="card-text">
-                <small>Publicado em: {{ noticia.data_publicacao }}</small>
-              </p>
-              <a href="{% url 'news_completa' noticia.id %}" class="stretched-link"></a>
-            </div>
+      <div class="col-md-6 mb-4">
+        <div class="card h-100">
+          {% if noticia.capa %}
+            <img 
+              src="{{ noticia.capa.url }}" 
+              class="card-img-top w-100" 
+              alt="{{ noticia.titulo }}" 
+              style="height: 200px; object-fit: cover;">
+          {% endif %}
+          <div class="card-body">
+            <span class="badge rounded-pill bg-secondary px-4 my-1">{{ noticia.categoria.nome }}</span>
+            <h5 class="card-title">{{ noticia.titulo }}</h5>
+            <p class="card-subtitle text-muted">{{ noticia.subtitulo }}</p>
+            <p class="card-text mt-3">
+              <small class="">Por {{ noticia.autor.username }} em {{ noticia.data_publicacao }} </small>
+            </p>
+            <a href="{% url 'news_completa' noticia.id %}" class="stretched-link"></a>
           </div>
         </div>
-      {% endfor %}
+      </div>
+    {% endfor %}
     </div>
   {% else %}
     <div class="alert alert-warning" role="alert">

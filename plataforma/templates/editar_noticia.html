@@ -4,7 +4,13 @@
 {% block titulo %}  
     Editar Notícia
 {% endblock %}
-
+<style>
+  .responsive-image {
+    max-width: 100%; 
+    height: auto;
+    object-fit: cover;
+  }
+</style>
 {% block header %}
     {% include "partials/navbar.html" %}
     {% endblock %}

@@ -15,9 +15,7 @@ class Command(BaseCommand):
     
     def criar_usuarios(self):
         print("Criando usuários...")
-
-        # Criar usuário admin
-        if not User.objects.filter(username='admin').exists():
+        if not User.objects.filter(username='admin').exists(): #autor admin vai der o id 1
             User.objects.create_superuser(
                 username='admin',
                 email='admin@gmail.com',
@@ -27,7 +25,6 @@ class Command(BaseCommand):
         else:
             print("O usuário admin já existe.")
 
-        # Criar usuário staff
         if not User.objects.filter(username='Silvia Cognatto').exists():
             user_staff = User.objects.create_user(
                 username='Silvia Cognatto',
@@ -38,7 +35,19 @@ class Command(BaseCommand):
             user_staff.save()
             print("Usuário Silvia Cognatto criado com sucesso!")
         else:
-            print("O usuário staff já existe.")
+            print("O usuário Silvia Cognatto já existe.")
+            
+        if not User.objects.filter(username='Patrícia Cordeiro').exists():
+            user_staff = User.objects.create_user(
+                username='Patrícia Cordeiro',
+                email='pati.cordeiro@gmail.com',
+                password='123456789' 
+            )
+            user_staff.is_staff = True
+            user_staff.save()
+            print("Usuário Patrícia Cordeiro criado com sucesso!")
+        else:
+            print("O usuário Patrícia Cordeiro já existe.")
             
     def inserir_categorias(self):
         print("Verificando se as categorias existem...")
@@ -75,7 +84,8 @@ class Command(BaseCommand):
         categoria_diversidade= Categoria.objects.get(id=6)
         categoria_mulheres_inspiradoras= Categoria.objects.get(id=7)
         
-        autor_silvia = User.objects.get(id=1)
+        autor_silvia = User.objects.get(id=2)
+        autor_patricia = User.objects.get(id=3)
 
         # Dados da notícia
         noticias_dados = [
@@ -201,6 +211,52 @@ class Command(BaseCommand):
                 "status": "PU",
                 "data_publicacao": datetime.now()
             },
+            {
+                "titulo": "O Poder do Home Office: Benefícios para Mulheres com Filhos Pequenos",
+                "subtitulo": "Como o trabalho remoto está transformando a vida de mães e promovendo um equilíbrio saudável entre carreira e família",
+                "conteudo":"<p>O trabalho remoto, uma tendência que ganhou força nos últimos anos, tem mostrado ser uma solução eficaz para muitas mulheres,\
+                            especialmente aquelas com filhos pequenos. A flexibilidade proporcionada pelo home office não só permite que essas mães cumpram suas obrigações profissionais, \
+                            mas também que dediquem tempo de qualidade aos seus filhos. Aqui estão algumas das principais vantagens do trabalho remoto para mulheres com filhos pequenos:\
+                            </p><p><br></p><ol><li><strong>Flexibilidade de Horários</strong>: O home office permite que as mães ajustem seus horários de trabalho de acordo com as necessidades da família. \
+                            Isso significa que elas podem trabalhar durante o tempo em que os filhos estão na escola ou dormindo, tornando mais fácil gerenciar as responsabilidades parentais.\
+                            </li><li><strong>Redução do Estresse</strong>: Mães que trabalham fora de casa frequentemente enfrentam o estresse de conciliar horários de trabalho e responsabilidades familiares, além do tempo de deslocamento. \
+                            O home office elimina esses desafios, permitindo um ambiente de trabalho mais tranquilo e produtivo.</li><li><strong>Aumento da Produtividade</strong>: Estudos indicam que muitos profissionais são mais produtivos em casa do que no escritório. \
+                            A liberdade de criar um ambiente de trabalho confortável e personalizado, junto à possibilidade de evitar distrações comuns em um escritório, pode resultar em um desempenho melhor.</li><li><strong>Mais Tempo com os Filhos</strong>: Trabalhar de casa proporciona a oportunidade de passar mais tempo com os filhos, seja durante o almoço ou pausas rápidas. Essa proximidade ajuda a fortalecer os laços familiares e contribui para o desenvolvimento emocional das crianças.\
+                            </li><li><strong>Menos Custos com Transporte</strong>: O trabalho remoto elimina a necessidade de deslocamento, resultando em economia de tempo e dinheiro. Isso permite que as mães invistam mais em atividades que realmente importam, como passeios em família ou atividades extracurriculares para os filhos.\
+                            </li><li><strong>Possibilidade de Crescimento Profissional</strong>: Com a crescente aceitação do trabalho remoto, as mulheres têm acesso a uma gama mais ampla de oportunidades de carreira. Isso as capacita a buscar cargos mais altos sem sacrificar o tempo com a família.</li></ol><p><br></p>\
+                            <p><img src='https://s5.static.brasilescola.uol.com.br/be/2024/03/mulher-trabalhando.jpg' class='responsive-image'></p><p><br></p>\
+                            <p>À medida que o mundo do trabalho continua a evoluir, é essencial que as empresas reconheçam e apoiem a necessidade de flexibilidade, especialmente para as mulheres com filhos pequenos. \
+                            O home office não é apenas uma alternativa viável; é uma maneira de promover um equilíbrio saudável entre vida pessoal e profissional, beneficiando tanto as mães quanto as organizações em que trabalham. \
+                            A promoção de um ambiente de trabalho mais inclusivo e flexível pode resultar em uma força de trabalho mais engajada e produtiva, além de contribuir para a igualdade de gênero no mercado de trabalho.</p>",
+                "capa": None,  
+                "categoria": categoria_forca_feminina,
+                "autor": autor_silvia,
+                "status": "PU",
+                "data_publicacao": datetime.now()
+            },
+            {
+                "titulo": "Mulheres empreendedoras: Um novo capítulo pós pandêmico",
+                "subtitulo": "A pandemia impulsionou a inovação e a resiliência feminina, transformando desafios em oportunidades de negócios.",
+                "conteudo":"<p>A pandemia de COVID-19 trouxe desafios sem precedentes para a economia global, mas também serviu como catalisador para um fenômeno notável: \
+                            o aumento do empreendedorismo feminino no Brasil. Segundo dados do Sebrae, entre 2020 e 2024, o número de mulheres empreendedoras cresceu 35%, \
+                            refletindo uma mudança significativa no cenário econômico do país.</p><p><strong>Motivações para Empreender</strong></p><p>As mulheres brasileiras \
+                            têm buscado o empreendedorismo como uma alternativa para enfrentar as dificuldades financeiras exacerbadas pela pandemia. A pesquisa realizada pela <em>Fundação Getúlio Vargas</em> revelou que 60% das mulheres que abriram negócios durante esse período o fizeram por necessidade, \
+                            enquanto 40% foram motivadas pela busca de novas oportunidades. Muitas delas aproveitaram a ocasião para transformar paixões pessoais em empreendimentos, como confeitaria, moda, beleza e tecnologia.</p><p><strong>Impacto Social e Econômico</strong></p><p>O crescimento do empreendedorismo feminino não apenas fortalece a economia, \
+                            mas também promove mudanças sociais. As mulheres estão criando negócios que refletem suas experiências e necessidades, contribuindo para a diversidade e inovação no mercado. Além disso, os negócios liderados por mulheres tendem a gerar empregos, com uma média de três contratações por empreendimento, segundo dados do Sebrae.</p><p><strong>Histórias de Sucesso</strong></p>\
+                            <p>Diversas histórias inspiradoras surgiram nesse novo cenário. \
+                            Uma delas é a de <strong>Patrícia Santos</strong>, fundadora da startup de tecnologia <em>Mulheres em Tecnologia</em>, que visa incentivar a presença feminina no setor. Com a experiência adquirida durante a pandemia, Patrícia conseguiu transformar sua paixão por tecnologia em um negócio próspero, oferecendo cursos e treinamentos voltados para mulheres.</p>\
+                            <p>Outra empreendedora de destaque é <strong>Fernanda Silva</strong>, que lançou sua marca de roupas sustentáveis durante a pandemia. \
+                            Com foco em moda consciente, Fernanda conseguiu atrair uma base fiel de clientes, mostrando que o empreendedorismo pode ser uma força transformadora no setor de moda.</p>\
+                            <p><strong>Desafios Persistentes</strong></p><p>Apesar do crescimento impressionante, as mulheres empreendedoras ainda enfrentam desafios significativos, como acesso limitado a financiamento e redes de apoio. De acordo com a pesquisa da <em>Rede Mulher Empreendedora</em>, apenas 29% das mulheres têm acesso a crédito para expandir seus negócios, o que limita seu potencial de crescimento.</p><p><strong>\
+                            O Futuro do Empreendedorismo Feminino</strong></p><p>O panorama do empreendedorismo feminino no Brasil está mudando rapidamente, e o apoio governamental e de instituições privadas se torna cada vez mais crucial. Iniciativas que promovem o acesso a capacitação, financiamento e mentoria são fundamentais para que as mulheres possam continuar a prosperar em seus empreendimentos.</p>\
+                            <p>Em 2024, a expectativa é que esse crescimento continue, impulsionado pela resiliência e inovação das mulheres brasileiras. \
+                            O aumento do empreendedorismo feminino não é apenas uma resposta à crise, mas uma construção de um futuro mais igualitário e próspero para todos.</p>",
+                "capa": None,  
+                "categoria": categoria_empreendedorismo,    
+                "autor": autor_silvia,
+                "status": "AN",
+                "data_publicacao": datetime.now()
+            },
         ]
         
         for dado in noticias_dados:
@@ -209,5 +265,5 @@ class Command(BaseCommand):
                 instancia.save()
                 print(f"Notícia '{dado['titulo']}' inserida com sucesso!")
             else:
-                print(f"A notícia '{dado['titulo']}' já existe.")
+                print(f"A notícia '{dado['titulo']}' já existe.")   
         self.stdout.write(self.style.SUCCESS("Inserção de notícias concluída com sucesso."))

@@ -5,7 +5,13 @@
 {% block header %}
   {% include "partials/navbar.html" %}
 {% endblock %}
-
+<style>
+  .responsive-image {
+    max-width: 100%; 
+    height: auto;
+    object-fit: cover;
+  }
+</style>
 {% block conteudo %}
 <div class="container my-5" style= "max-width: 1100px;">
   {% if messages %}

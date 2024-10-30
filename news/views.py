@@ -1,16 +1,18 @@
-from django.shortcuts import render, get_object_or_404
-from plataforma.models import Noticia, Categoria
+from django.shortcuts import render, get_object_or_404, redirect
+from plataforma.models import Noticia, Categoria, Comentarios
 from django.db.models import Q
 
 
 def news_feed(request):
     noticias = Noticia.objects.filter(status='PU')
     categorias = Categoria.objects.all()
+
     return render(request, 'news_feed.html', {'noticias': noticias, 'categorias': categorias})
 
 def news_completa(request, id):
-    noticia = get_object_or_404(Noticia, id=id)  
-    return render(request, 'news_completa.html', {'noticia': noticia})
+    noticia = get_object_or_404(Noticia, id=id)
+    comentarios = noticia.comentarios.all() 
+    return render(request, 'news_completa.html', {'noticia': noticia, "comentarios": comentarios})
 
 def buscar_noticias(request):
     query = request.GET.get('q')
@@ -40,3 +42,22 @@ def buscar_noticias(request):
         'categoria': categoria,  
         'categorias': categorias
     })
+    
+def adicionar_comentario(request, noticia_id):
+    noticia = get_object_or_404(Noticia, id=noticia_id)
+
+    if request.method == 'POST':
+        autor = request.POST.get('autor') 
+        comentario = request.POST.get('comentario')  
+
+        
+        if autor and comentario:
+            
+            comentario = Comentarios(noticia=noticia, autor=autor, comentario=comentario)
+            comentario.save()  
+            return redirect('news_completa', id=noticia.id)  
+        else:
+            error_message = "Todos os campos devem ser preenchidos."
+            return render(request, 'news_completa.html', {'noticia': noticia, 'error_message': error_message})
+
+    return render(request, 'news_completa.html', {'noticia': noticia})

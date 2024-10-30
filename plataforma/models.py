@@ -8,7 +8,7 @@ class Categoria(models.Model):
 
     def __str__(self):
         return self.nome
-    
+
 class Noticia(models.Model):
     
     STATUS_CHOICES = {
@@ -25,7 +25,16 @@ class Noticia(models.Model):
     data_publicacao = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=2, choices=STATUS_CHOICES, default = 'AN')
 
+
     def __str__(self):
         return self.titulo
     
+class Comentarios(models.Model):
     
+    comentario = models.TextField()
+    autor = models.CharField(max_length=100)
+    noticia = models.ForeignKey(Noticia, on_delete=models.CASCADE, related_name='comentarios')
+    data_comentario = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.comentario
