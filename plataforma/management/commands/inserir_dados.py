@@ -8,9 +8,10 @@ class Command(BaseCommand):
     help = 'Insere categorias iniciais no banco de dados'
 
     def handle(self, *args, **kwargs):
+        self.criar_usuarios()   
         self.inserir_categorias()
         self.inserir_noticias()
-        self.criar_usuarios()
+
     
     def criar_usuarios(self):
         print("Criando usuários...")
@@ -79,7 +80,7 @@ class Command(BaseCommand):
         # Dados da notícia
         noticias_dados = [
             {
-                "titulo": "Novas perspectivas estão chegando!",
+                "titulo": "🏳️‍⚧️ Novas perspectivas estão chegando! 🏳️‍⚧️",
                 "subtitulo": "Empresas estão apoiando a inclusão de pessoas trans no mercado de trabalho",
                 "conteudo": "<p>Nos últimos anos, a discussão sobre diversidade e inclusão no ambiente de trabalho ganhou destaque, \
                             e um dos focos importantes dessa conversa é a inclusão de mulheres trans. Com a crescente conscientização sobre a \
@@ -101,7 +102,7 @@ class Command(BaseCommand):
                             O relatório de 2024 da Fundação Getúlio Vargas aponta que a taxa de desemprego entre pessoas trans é significativamente maior do que a \
                             média nacional. Esse cenário evidencia a necessidade de esforços contínuos para garantir que as iniciativas de inclusão sejam eficazes \
                             e que mulheres trans tenham acesso igualitário às oportunidades no mercado de trabalho.</p>\
-                            <p><img src='https://img.freepik.com/fotos-gratis/vista-lateral-de-uma-pessoa-lesbica-no-trabalho_23-2150617777.jpg?t=st=1730305527~exp=1730309127~hmac=7bca65ebb8811700d85b21abba43a8ce348f7da3c11b946b00fb0c8b4cf492fd&amp;w=1380' class='responsive-image'></p>\
+                            <p><img src='https://cdn.prod.website-files.com/64270b7f9c43395c1287361d/6435a20222dd494120c1424d_5-Ways-to-Embrace-Trans-Employees-and-Cultivate-a-More-Vibrant-Workplace.jpg' class='responsive-image'></p>\
                             <h2>Um Futuro Promissor</h2> \
                             <p>No entanto, as perspectivas são encorajadoras. Com o aumento do ativismo e a pressão da sociedade civil por uma maior inclusão, muitas empresas \
                             estão se comprometendo a melhorar suas práticas. O movimento pela igualdade de gênero e diversidade está se tornando uma prioridade estratégica \
@@ -119,11 +120,11 @@ class Command(BaseCommand):
             {
                 "titulo": "Cresce a Participação Feminina na Tecnologia em 2024",
                 "subtitulo": "Iniciativas e exemplos inspiradores impulsionam a entrada e ascensão das mulheres em um dos setores mais promissores do mercado.",
-                "conteudo":"<article><p>Em 2024, o setor de tecnologia testemunhou um crescimento notável na empregabilidade das mulheres, refletindo um esforço contínuo para promover a diversidade e a inclusão. De acordo com o relatório da Tech Workforce Initiative, a participação feminina nas funções tecnológicas atingiu 35%, um aumento de 5%/ em relação ao ano anterior.</p><br>\
+                "conteudo":"<article><p>Em 2024, o setor de tecnologia testemunhou um crescimento notável na empregabilidade das mulheres, refletindo um esforço contínuo para promover a diversidade e a inclusão. De acordo com o relatório da Tech Workforce Initiative, a participação feminina nas funções tecnológicas atingiu 35%, um aumento de 5% em relação ao ano anterior.</p><br>\
                             <p>Os dados também mostram que as mulheres estão cada vez mais ocupando cargos de liderança. O número de mulheres em posições de gestão cresceu 10% desde 2023, agora representando 30% dos cargos executivos nas principais empresas de tecnologia. Esse aumento é atribuído a iniciativas como programas de mentoria e treinamento focados em desenvolvimento de carreira para mulheres.</p><br>\
-                            <p><img src='https://img.freepik.com/free-photo/programming-background-concept_23-2150170137.jpg?t=st=1730305210~exp=1730308810~hmac=2cf8c11dc5a3c9cddaecffa77f0cca67da74f4652bbe74e404414d48dbc599b1&amp;w=1380' class='responsive-image'></p>\
+                            <p><img src='https://images.squarespace-cdn.com/content/v1/5d7968f244be58081fef93e8/1656404131634-93YU6AY466GRE1AQ4I2E/unsplash-image-OW5KP_Pj85Q.jpgr=1#vhid=-kYu2GV3n-wvBM&vssid=mosaic' class='responsive-image'></p>\
                             <p>Além disso, a pesquisa aponta que as mulheres são mais propensas a trabalhar em áreas emergentes como inteligência artificial e ciência de dados. Em 2024, cerca de 40% dos novos profissionais contratados nessas áreas eram mulheres, um avanço significativo em um setor historicamente dominado por homens.</p><br>\
-                            <p>Apesar do progresso, desafios persistem. A pesquisa revelou que as mulheres ainda enfrentam barreiras significativas, como a falta de representatividade em certas áreas tecnológicas e disparidades salariais. O relatório indica que as mulheres na tecnologia ganham em média 15% a menos que seus colegas homens.</p><br>\
+                            <p>Apesar do progresso, desafios persistem. A pesquisa revelou que as mulheres ainda enfrentam barreiras significativas, como a falta de representatividade em certas áreas tecnológicas e disparidades salariais. O relatório indica que as mulheres na tecnologia ganham em média 15%\ a menos que seus colegas homens.</p><br>\
                             <p>A Tech Workforce Initiative conclui que, embora os avanços sejam encorajadores, ainda há muito a ser feito para garantir que as mulheres tenham igualdade de oportunidades e salários justos no setor de tecnologia. As empresas são incentivadas a continuar investindo em programas de diversidade e inclusão para apoiar a carreira das mulheres na tecnologia.</p><br>\
                             </article>",
                 "capa": "noticias/tela_codigos.png",  
